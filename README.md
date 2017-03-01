@@ -22,9 +22,13 @@ Dependencies:
 
 This module requires the following Python dependencies:
 
-    pip install pyOpenSSL
-    pip install 'oauth2client==1.5.1'
-    pip install gspread
+- pyOpenSSL
+- gspread
+- oauth2client
+
+That can be installed running:
+
+    pip install -r requirements
 
 Authors:
 ========
