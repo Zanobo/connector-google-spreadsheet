@@ -25,11 +25,12 @@ import base64
 import operator
 import itertools
 import traceback
+import os
 
 from httplib2 import ServerNotFoundError
 import gspread
 from gspread.exceptions import NoValidUrlKeyFound, SpreadsheetNotFound
-from oauth2client.client import SignedJwtAssertionCredentials
+from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
 from openerp import registry, models, fields, api, _
@@ -52,10 +53,12 @@ _logger = logging.getLogger(__name__)
 
 
 def open_document(backend, document_url):
-    # Auhentification
-    private_key = base64.b64decode(backend.p12_key)
-    credentials = SignedJwtAssertionCredentials(
-        backend.email, private_key, SCOPE)
+    # Auhentification, fetch data from credentials.json
+    basedir = os.path.dirname(os.path.realpath(__file__))
+    json_file = os.path.join(basedir, 'credentials.json')
+
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file, SCOPE)
+
     try:
         gc = gspread.authorize(credentials)
     except ServerNotFoundError:

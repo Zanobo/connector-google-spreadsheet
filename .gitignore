@@ -41,3 +41,6 @@ parts
 bin
 settings
 buildout.dev.cfg
+
+# Google credentials
+connector_google_spreadsheet/credentials.json

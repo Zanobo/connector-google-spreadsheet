@@ -30,6 +30,12 @@ That can be installed running:
 
     pip install -r requirements
 
+Authentication:
+=============
+
+Store your Google credentials into the file connector_google_spreadsheet/credentials.json
+See https://oauth2client.readthedocs.io/en/latest/source/oauth2client.service_account.html for more information.
+
 Authors:
 ========
 - Copyright (C) 2015-TODAY Akretion (http://www.akretion.com).
